@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { EmployeeListComponent }  from './employee-list/employee-list.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeCreateComponent } from './employee-create/employee-create.component';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 

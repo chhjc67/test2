@@ -1,0 +1,75 @@
+<h2>{{ dataInput }} ({{ userName }})</h2>
+<ng-template #callToAction>
+    <div [ngSwitch]="elementHide">
+        <p *ngSwitchCase=true>Es visible {{elementHide}}</p>
+        <p *ngSwitchCase=false>Esta oculto {{elementHide}}</p>
+    </div>
+</ng-template>
+<div role="main">
+    <div>
+        <label>Ingrese texto </label>
+        <input type="text" (keyup.enter)="keyupFilter(user)" #user placeholder="Ingrese" />
+    </div>
+    <div>
+        <label>User name:</label>
+        <input type="text" [value]="userName" #username (keyup.enter)="updateUserName(username)" placeholder="nombre" />
+    </div>
+    <div>
+        <div [ngTemplateOutlet]="callToAction">
+            <h5 [ngStyle]="{
+        'color': elementHide? 'green':'red',
+        'textTransform': elementHide? 'uppercase':'lowercase'
+        }">Llamada al template 'callToAction'</h5>
+            <h6 [ngClass]="{
+        'hideOff': elementHide,
+        'hideOn': !elementHide}">Llamada al template 'callToAction'</h6>
+        </div>
+        <label>Seleccione:</label>
+        <input type="checkbox" [(ngModel)]="elementHide" placeholder="usuario" />
+        @if (elementHide) {
+        <div>
+            <label>User name:</label>
+            <input type="text" [(ngModel)]="userName" placeholder="usuario" />
+        </div>
+        } @else {
+        <h4>Oculto el boton</h4>
+        }
+    </div>
+    <div>
+        <ul>
+            @for(item of usersObj; track $index) {
+            <li>#{{$index}} id:{{item.id}} name:{{item.name}} <button (click)="onDelete1(item)">Del</button></li>
+            }@empty {
+            <li>There are no items.</li>
+            }
+        </ul>
+    </div>
+    <div>
+        <ul>
+            <li *ngFor="let user of usersObj; let ii = index">
+                #{{ii}} id:{{user.id}} name:{{user.name}} <button (click)="onDelete2(ii)">Del</button>
+            </li>
+        </ul>
+        <button (click)="addItem()">Adiciona item</button>
+    </div>
+    <div class="app-component">
+        <h4>Link</h4>
+        <dl>
+            <dd><a href="https://www.youtube.com/watch?v=BzE7MA0dwvE">#59 What is View Encapsulation | Understanding
+                    View
+                    Encapsulation</a></dd>
+            <dd><a href="https://www.youtube.com/watch?v=-N32Gt_csUk">#69 Creating & Using an Observable | Understanding
+                    Observables & RxJS</a></dd>
+            <dd><a href="https://www.youtube.com/watch?v=6Jpo3NWiFP8">Angular Pipes in Depth | Angular Concepts made
+                    easy</a>
+            </dd>
+            <dd><a href="https://www.youtube.com/watch?v=SRgVu0bYykY">Dynamic Components in Angular | Angular Concepts
+                    made
+                    easy</a></dd>
+        </dl>
+        <!-- <div>
+      <pagination [currentPage]="currentPage" [limit]="20" [total]="100" (changePage)="changePage($event)" style="margin-left: 1rem;"/>
+      <p>Página#&nbsp;<b>{{currentPage}}</b></p>   
+    </div> -->
+    </div>
+</div>
