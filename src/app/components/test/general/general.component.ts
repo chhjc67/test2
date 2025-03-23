@@ -1,4 +1,10 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output,
+  ViewContainerRef,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   NgClass,
@@ -7,7 +13,10 @@ import {
   NgSwitch,
   NgSwitchCase,
   NgTemplateOutlet,
+  NgComponentOutlet,
 } from '@angular/common';
+import { TemporalComponent } from '../temporal/temporal.component';
+import { Temporal1Component } from '../temporal1/temporal1.component';
 
 @Component({
   selector: 'app-general',
@@ -20,15 +29,22 @@ import {
     NgSwitch,
     NgSwitchCase,
     NgTemplateOutlet,
+    NgComponentOutlet,
   ],
   templateUrl: './general.component.html',
   styleUrl: './general.component.css',
 })
 export class GeneralComponent {
-  @Input() dataInput: string = '';
+  @Input() inputParameter: string = '';
   @Output() messageEvent = new EventEmitter();
   userName: string = 'Julissa Andrea';
-  elementHide: boolean = false;
+  elementInput: boolean = false;
+  elementNgSwitch: boolean = false;
+  elementFor: boolean = false;
+  elementNgContent: boolean = false;
+  elementComponentOutlet: boolean = false;
+  elementViewContainer: boolean = false;
+
   usersObj: Array<any> = [
     { id: 11, name: 'Julissa', email: 'julissa@gmail.com' },
     { id: 12, name: 'Andrea', email: 'andrea@gmail.com' },
@@ -38,6 +54,8 @@ export class GeneralComponent {
   ];
   currentPage: number = 1;
   randomNumber: number = 0;
+
+  constructor(private viewContainer: ViewContainerRef) {}
 
   changePage(page: number): void {
     this.currentPage = page;
@@ -65,5 +83,17 @@ export class GeneralComponent {
 
   onDelete2(index: number) {
     this.usersObj.splice(index, 1);
+  }
+
+  loadComponent1() {
+    return TemporalComponent;
+  }
+
+  loadComponent2() {
+    this.viewContainer.createComponent(Temporal1Component);
+  }
+
+  removeComponent() {
+    this.viewContainer.remove();
   }
 }

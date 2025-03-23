@@ -2,16 +2,21 @@ import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { routes } from './app.routes';
 import { GeneralComponent } from './components/test/general/general.component';
+import { ProfileComponent } from './components/test/profile/profile.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, GeneralComponent],
+  imports: [RouterOutlet, GeneralComponent, ProfileComponent],
   template: `<router-outlet />
-    <app-general [dataInput]="message" (messageEvent)="reciveMessage($event)">
+    <app-general
+      [inputParameter]="message"
+      (messageEvent)="reciveMessage($event)"
+    >
       <p selector1>usando ng-content (selector1)</p>
       <p selector2>usando ng-content (selector2)</p>
-    </app-general>`,
+    </app-general>
+    <app-profile [inputParameter]="message"></app-profile>`,
   styles: [],
 })
 export class AppComponent implements AfterViewInit {
@@ -20,7 +25,7 @@ export class AppComponent implements AfterViewInit {
     .flat()
     .filter((route) => route && route.path)
     .filter((route) => !route.path?.includes(':'));
-  message: string = 'Mensaje enviado a componente hijo...';
+  message: string = 'Texto enviado a componente hijo...';
   @ViewChild(GeneralComponent) viewChildObj: any;
 
   constructor() {

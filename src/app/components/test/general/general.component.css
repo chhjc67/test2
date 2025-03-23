@@ -3,6 +3,15 @@ div {
     padding: 4px;
     border: solid 1px gray; 
 }
+h3 {
+    color: darkkhaki;
+}
+h4 {
+    color: goldenrod;
+}
+input {
+    margin-left: 1em;
+}
 .hideOff{
     color: green;
     text-transform: uppercase;
@@ -12,7 +21,7 @@ div {
     text-transform: lowercase;
 }
 .app-component {
-    text-align: center;
+    text-align: left;
     border: #bbb 2px solid;
     padding-top: 0.1em;
     padding-bottom: 0.1em;

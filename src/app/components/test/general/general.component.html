@@ -1,81 +1,104 @@
-<h2>{{ dataInput }} ({{ userName }})</h2>
+<h2>{{ inputParameter }} ({{ userName }})</h2>
 <ng-template #callToAction>
-    <div [ngSwitch]="elementHide">
-        <p *ngSwitchCase=true>Es visible {{elementHide}}</p>
-        <p *ngSwitchCase=false>Esta oculto {{elementHide}}</p>
+    <p>Contenido del ng-template</p>
+    <div [ngSwitch]="elementNgSwitch">
+        <h3 *ngSwitchCase=true>ngSwitch Case h3 {{elementNgSwitch}}</h3>
+        <h4 *ngSwitchCase=false>ngSwitch Case h4 {{elementNgSwitch}}</h4>
     </div>
 </ng-template>
 <div role="main">
     <div>
-        <label>Ingrese texto </label>
-        <input type="text" (keyup.enter)="keyupFilter(user)" #user placeholder="Ingrese" />
-    </div>
-    <div>
-        <label>User name:</label>
-        <input type="text" [value]="userName" #username (keyup.enter)="updateUserName(username)" placeholder="nombre" />
-    </div>
-    <div>
-        <div [ngTemplateOutlet]="callToAction">
-            <h5 [ngStyle]="{
-        'color': elementHide? 'green':'red',
-        'textTransform': elementHide? 'uppercase':'lowercase'
-        }">Llamada al template 'callToAction'</h5>
-            <h6 [ngClass]="{
-        'hideOff': elementHide,
-        'hideOn': !elementHide}">Llamada al template 'callToAction'</h6>
+        <label for="input">Input/ngSwitch/ng-template </label>
+        <input id="input" type="checkbox" [(ngModel)]="elementInput" placeholder="Input" />
+        @if(elementInput) {
+        <div class="app-component">
+            <label>Text</label>
+            <input type="text" (keyup.enter)="keyupFilter(user)" #user placeholder="Enter a text" />
+            <input type="text" [value]="userName" #username (keyup.enter)="updateUserName(username)"
+                placeholder="Enter a text" />
+            <input type="text" [(ngModel)]="userName" placeholder="Enter a text" />
         </div>
-        <label>Seleccione:</label>
-        <input type="checkbox" [(ngModel)]="elementHide" placeholder="usuario" />
-        @if (elementHide) {
-        <div>
-            <label>User name:</label>
-            <input type="text" [(ngModel)]="userName" placeholder="usuario" />
+        <div class="app-component">
+            <label>elementNgSwitch</label>
+            <input type="checkbox" [(ngModel)]="elementNgSwitch" placeholder="Switch" />
+            <div [ngTemplateOutlet]="callToAction">
+                <h5
+                    [ngStyle]="{ 'color': elementNgSwitch? 'green':'red', 'textTransform': elementNgSwitch? 'uppercase':'lowercase' }">
+                    Template 'callToAction' cambio el estilo [ngStyle]
+                </h5>
+                <h5 [ngClass]="{'hideOff': elementNgSwitch, 'hideOn': !elementNgSwitch}">
+                    Template 'callToAction' cambio el estilo [ngClass]
+                </h5>
+            </div>
         </div>
-        } @else {
-        <h4>Oculto el boton</h4>
+        } @else{
+        <p>Area oculta</p>
         }
     </div>
     <div>
-        <ul>
-            @for(item of usersObj; track $index) {
-            <li>#{{$index}} id:{{item.id}} name:{{item.name}} <button (click)="onDelete1(item)">Del</button></li>
-            }@empty {
-            <li>There are no items.</li>
-            }
-        </ul>
+        <label for="for">for to list</label>
+        <input id="for" type="checkbox" [(ngModel)]="elementFor" placeholder="For to list" />
+        @if(elementFor) {
+        <div class="app-component">
+            <div>
+                <ul>
+                    @for(item of usersObj; track $index) {
+                    <li>#{{$index}} id:{{item.id}} name:{{item.name}} <button (click)="onDelete1(item)">Del</button>
+                    </li>
+                    }@empty {
+                    <li>There are no items.</li>
+                    }
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li *ngFor="let user of usersObj; let ii = index">
+                        #{{ii}} id:{{user.id}} name:{{user.name}} <button (click)="onDelete2(ii)">Del</button>
+                    </li>
+                </ul>
+                <button (click)="addItem()">Adiciona item</button>
+            </div>
+        </div>
+        } @else{
+        <p>Area oculta</p>
+        }
     </div>
     <div>
-        <ul>
-            <li *ngFor="let user of usersObj; let ii = index">
-                #{{ii}} id:{{user.id}} name:{{user.name}} <button (click)="onDelete2(ii)">Del</button>
-            </li>
-        </ul>
-        <button (click)="addItem()">Adiciona item</button>
-    </div>
-    <div class="app-component">
-        <h4>Link</h4>
-        <dl>
-            <dd><a href="https://www.youtube.com/watch?v=BzE7MA0dwvE">#59 What is View Encapsulation | Understanding
-                    View
-                    Encapsulation</a></dd>
-            <dd><a href="https://www.youtube.com/watch?v=-N32Gt_csUk">#69 Creating & Using an Observable | Understanding
-                    Observables & RxJS</a></dd>
-            <dd><a href="https://www.youtube.com/watch?v=6Jpo3NWiFP8">Angular Pipes in Depth | Angular Concepts made
-                    easy</a>
-            </dd>
-            <dd><a href="https://www.youtube.com/watch?v=SRgVu0bYykY">Dynamic Components in Angular | Angular Concepts
-                    made
-                    easy</a></dd>
-        </dl>
-        <!-- <div>
-      <pagination [currentPage]="currentPage" [limit]="20" [total]="100" (changePage)="changePage($event)" style="margin-left: 1rem;"/>
-      <p>Página#&nbsp;<b>{{currentPage}}</b></p>   
-    </div> -->
+        <label for="ngContent">ngContent</label>
+        <input id="ngContent" type="checkbox" [(ngModel)]="elementNgContent" placeholder="Content" />
+        @if(elementNgContent) {
+        <div class="app-component">
+            <h3><ng-content select="[selector1]"></ng-content></h3>
+            <h4><ng-content select="[selector2]"></ng-content></h4>
+        </div>
+        } @else{
+        <p>Area oculta</p>
+        }
     </div>
     <div>
-        <ng-content select="[selector1]"></ng-content>
+        <label for="ngComponentOutlet">ngComponentOutlet</label>
+        <input id="ngComponentOutlet" type="checkbox" [(ngModel)]="elementComponentOutlet"
+            placeholder="Component outlet" />
+        @if(elementComponentOutlet) {
+        <div class="app-component">
+            <!-- Directiva de salida -->
+            <div *ngComponentOutlet="loadComponent1()"></div>
+        </div>
+        } @else{
+        <p>Area oculta</p>
+        }
     </div>
     <div>
-        <ng-content select="[selector2]"></ng-content>
+        <label for="viewContainer">ViewContainer</label>
+        <input id="viewContainer" type="checkbox" [(ngModel)]="elementViewContainer" placeholder="ViewContainer" />
+        @if(elementViewContainer) {
+        <div class="app-component">
+            <button (click)="loadComponent2()">Create component</button>
+            <button (click)="removeComponent()">Remove component</button>
+        </div>
+        } @else{
+        <p>Area oculta</p>
+        }
     </div>
+
 </div>
