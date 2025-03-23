@@ -8,10 +8,10 @@ import { GeneralComponent } from './components/test/general/general.component';
   standalone: true,
   imports: [RouterOutlet, GeneralComponent],
   template: `<router-outlet />
-    <app-general
-      [dataInput]="message"
-      (messageEvent)="reciveMessage($event)"
-    />`,
+    <app-general [dataInput]="message" (messageEvent)="reciveMessage($event)">
+      <p selector1>usando ng-content (selector1)</p>
+      <p selector2>usando ng-content (selector2)</p>
+    </app-general>`,
   styles: [],
 })
 export class AppComponent implements AfterViewInit {
