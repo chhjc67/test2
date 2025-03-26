@@ -20,26 +20,30 @@ import { GeneralComponent } from './components/test/general/general.component';
   styles: [],
 })
 export class AppComponent implements AfterViewInit {
+  message: string = 'Texto enviado al componente General...';
   menuItems = routes
     .map((route) => route.children ?? [])
     .flat()
     .filter((route) => route && route.path)
     .filter((route) => !route.path?.includes(':'));
-  message: string = 'Texto enviado a componente hijo...';
   @ViewChild(GeneralComponent) viewChildObj: any;
 
   constructor() {
-    console.log('Log 1:', this.menuItems);
+    console.log('Constructor triggers componente App', this.menuItems);
   }
 
   ngAfterViewInit() {
     console.log(
-      'Mensaje recido desde componente hijo...',
-      this.viewChildObj.userName
+      'Texto generado en el componente General...',
+      this.viewChildObj.userName,
+      this.viewChildObj.currentPage
     );
   }
 
   reciveMessage(number: string) {
-    console.log('Mensaje recido desde componente hijo por evento...', number);
+    console.log(
+      'Texto generado en el componente General por evento...',
+      number
+    );
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-temporal',
@@ -36,4 +36,16 @@ import { Component } from '@angular/core';
   `,
   styles: ``,
 })
-export class TemporalComponent {}
+export class TemporalComponent implements AfterViewInit, OnDestroy {
+  constructor() {
+    console.log('Constructo Triggers componente Temporal');
+  }
+
+  ngAfterViewInit(): void {
+    console.log('AfterViewInit Triggers component Temporal');
+  }
+
+  ngOnDestroy(): void {
+    console.log('OnDestroy Triggers component Temporal');
+  }
+}

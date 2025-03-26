@@ -1,7 +1,12 @@
 import {
+  AfterContentChecked,
+  AfterContentInit,
+  AfterViewInit,
   Component,
-  Input,
+  DoCheck,
   EventEmitter,
+  Input,
+  OnInit,
   Output,
   ViewContainerRef,
 } from '@angular/core';
@@ -14,9 +19,11 @@ import {
   NgSwitchCase,
   NgTemplateOutlet,
   NgComponentOutlet,
+  DecimalPipe,
 } from '@angular/common';
 import { TemporalComponent } from '../temporal/temporal.component';
 import { Temporal1Component } from '../temporal1/temporal1.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: 'app-general',
@@ -30,11 +37,19 @@ import { Temporal1Component } from '../temporal1/temporal1.component';
     NgSwitchCase,
     NgTemplateOutlet,
     NgComponentOutlet,
+    ProfileComponent,
   ],
   templateUrl: './general.component.html',
   styleUrl: './general.component.css',
 })
-export class GeneralComponent {
+export class GeneralComponent
+  implements
+    OnInit,
+    DoCheck,
+    AfterContentInit,
+    AfterContentChecked,
+    AfterViewInit
+{
   @Input() inputParameter: string = '';
   @Output() messageEvent = new EventEmitter();
   userName: string = 'Julissa Andrea';
@@ -44,7 +59,6 @@ export class GeneralComponent {
   elementNgContent: boolean = false;
   elementComponentOutlet: boolean = false;
   elementViewContainer: boolean = false;
-
   usersObj: Array<any> = [
     { id: 11, name: 'Julissa', email: 'julissa@gmail.com' },
     { id: 12, name: 'Andrea', email: 'andrea@gmail.com' },
@@ -52,36 +66,46 @@ export class GeneralComponent {
     { id: 14, name: 'Valencia', email: 'valencia@gmail.com' },
     { id: 15, name: 'Diana', email: 'diana@gmail.com' },
   ];
-  currentPage: number = 1;
-  randomNumber: number = 0;
-
+  currentPage: number = Math.floor(Math.random() * 100) + 1;
+  countDoCheck: number = 0;
   constructor(private viewContainer: ViewContainerRef) {}
+
+  ngOnInit(): void {
+    console.log('OnInit Triggers componente General');
+  }
+
+  ngDoCheck(): void {
+    if (this.countDoCheck < 5) {
+      console.log('DoCheck Triggers componente General', this.countDoCheck);
+      this.countDoCheck++;
+    }
+  }
 
   changePage(page: number): void {
     this.currentPage = page;
   }
 
-  keyupFilter(user: HTMLInputElement) {
-    console.log(this.userName);
+  keyupFilter(user: HTMLInputElement): void {
+    console.log('KeyUp Triggers...', this.userName);
     this.userName = user.value;
   }
 
-  updateUserName(username: HTMLInputElement) {
+  updateUserName(username: HTMLInputElement): void {
     this.userName = username.value;
   }
 
-  addItem() {
+  addItem(): void {
     let user = { id: 16, name: 'Marcela' };
     this.usersObj.push(user);
     this.messageEvent.emit(Math.floor(Math.random() * 100) + 1);
   }
 
-  onDelete1(user: object) {
+  onDelete1(user: object): void {
     let index = this.usersObj.indexOf(user);
     this.usersObj.splice(index, 1);
   }
 
-  onDelete2(index: number) {
+  onDelete2(index: number): void {
     this.usersObj.splice(index, 1);
   }
 
@@ -89,11 +113,23 @@ export class GeneralComponent {
     return TemporalComponent;
   }
 
-  loadComponent2() {
+  loadComponent2(): void {
     this.viewContainer.createComponent(Temporal1Component);
   }
 
-  removeComponent() {
+  removeComponent(): void {
     this.viewContainer.remove();
+  }
+
+  ngAfterContentInit(): void {
+    console.log('AfterContentInit Triggers componente General');
+  }
+
+  ngAfterContentChecked(): void {
+    console.log('AfterContentChecked Triggers componente General');
+  }
+
+  ngAfterViewInit(): void {
+    console.log('AfterViewInit Triggers component Gereral');
   }
 }
