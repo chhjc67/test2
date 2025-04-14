@@ -29,6 +29,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Link del tutoriar
 
 Angular 18 Full Course - Complete Zero to Hero Angular 18 full Tutorial.
-[Referencia parte 1 hasta la 12](https://www.youtube.com/watch?v=iNMICDE2e6E&list=PLG6SdLSnBhdWj797VAEvABNYIBEaVQnfF&index=18) página y
-[Referencia parte 13 hasta la 19](https://www.youtube.com/watch?v=LJcPyTYBReE&list=PLG6SdLSnBhdWj797VAEvABNYIBEaVQnfF&index=10)
-página.
+[Referencia parte 1 hasta la 12](https://www.youtube.com/watch?v=iNMICDE2e6E&list=PLG6SdLSnBhdWj797VAEvABNYIBEaVQnfF&index=18) y
+[Referencia parte 13 hasta la 19](https://www.youtube.com/watch?v=LJcPyTYBReE&list=PLG6SdLSnBhdWj797VAEvABNYIBEaVQnfF&index=10).

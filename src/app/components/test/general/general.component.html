@@ -1,4 +1,5 @@
-<h2>{{ inputParameter }} ({{ userName }})</h2>
+<h2>{{ inputParameter }} ({{ userName }}) <a [routerLink]="['/employees']">Employees</a></h2>
+
 <ng-template #callToAction>
     <p>Contenido del ng-template</p>
     <div [ngSwitch]="elementNgSwitch">
@@ -17,6 +18,9 @@
             <input type="text" [value]="userName" #username (keyup.enter)="updateUserName(username)"
                 placeholder="Enter a text" />
             <input type="text" [(ngModel)]="userName" placeholder="Enter a text" />
+
+            <input type="month" [(ngModel)]="dateStart" title="Fecha" (change)="onChange()" />
+            <input type="month" [(ngModel)]="dateEnd" title="fecha" [min]="dateStart" [max]="dateMax" />
         </div>
         <div class="app-component">
             <label>elementNgSwitch</label>

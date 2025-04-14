@@ -19,11 +19,11 @@ import {
   NgSwitchCase,
   NgTemplateOutlet,
   NgComponentOutlet,
-  DecimalPipe,
 } from '@angular/common';
 import { TemporalComponent } from '../temporal/temporal.component';
 import { Temporal1Component } from '../temporal1/temporal1.component';
 import { ProfileComponent } from '../profile/profile.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-general',
@@ -38,6 +38,7 @@ import { ProfileComponent } from '../profile/profile.component';
     NgTemplateOutlet,
     NgComponentOutlet,
     ProfileComponent,
+    RouterLink,
   ],
   templateUrl: './general.component.html',
   styleUrl: './general.component.css',
@@ -59,6 +60,9 @@ export class GeneralComponent
   elementNgContent: boolean = false;
   elementComponentOutlet: boolean = false;
   elementViewContainer: boolean = false;
+  dateStart: string = '2024-01';
+  dateEnd: string = '2024-12';
+  dateMax: string = '2024-12';
   usersObj: Array<any> = [
     { id: 11, name: 'Julissa', email: 'julissa@gmail.com' },
     { id: 12, name: 'Andrea', email: 'andrea@gmail.com' },
@@ -131,5 +135,18 @@ export class GeneralComponent
 
   ngAfterViewInit(): void {
     console.log('AfterViewInit Triggers component Gereral');
+  }
+
+  onChange(): void {
+    this.dateMax = `${this.dateStart.substring(0, 4)}-12`;
+    var monthStart = Number(this.dateStart.substring(5));
+    var monthEnd = Number(this.dateEnd.substring(5));
+
+    if (monthStart > monthEnd) {
+      this.dateEnd = this.dateMax;
+    }
+    else {
+      this.dateEnd = `${this.dateStart.substring(0, 4)}${this.dateEnd.substring(4)}`;
+    }
   }
 }

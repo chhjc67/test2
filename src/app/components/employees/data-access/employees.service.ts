@@ -7,6 +7,10 @@ import { Employee } from '../../../core/model/employee';
 export class EmployeeService {
   public employeeList: Employee[] = [];
 
+  constructor() {
+    console.log('Constructor EmployeeService se creo...');
+  }
+
   ngOnInit() {
     this.employeeList = [
       {

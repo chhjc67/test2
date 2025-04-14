@@ -7,7 +7,25 @@ import { Router } from '@angular/router';
   selector: 'app-employee-list',
   standalone: true,
   imports: [],
-  template: ` <p style="padding-left: 1em;">employee-list works!</p> `,
+  template: `
+    <h2>List: Employee</h2>
+    <div>
+      <ul>
+        @for(item of employeeList; track $index) {
+        <li>
+          #{{ $index }} code:{{ item.code }} name:{{ item.name }} email:{{
+            item.email
+          }}
+          <button (click)="navigationUrl('employees/detail', item.id)">
+            Detail
+          </button>
+        </li>
+        }@empty {
+        <li>There are no items.</li>
+        }
+      </ul>
+    </div>
+  `,
   styles: ``,
 })
 export class EmployeeListComponent implements OnInit {
