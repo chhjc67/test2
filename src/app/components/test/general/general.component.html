@@ -1,109 +1,185 @@
-<h2>{{ inputParameter }} ({{ userName }}) <a [routerLink]="['/employees']">Employees</a></h2>
+<h2>
+  {{ inputParameter }} ({{ userName }})
+  <a [routerLink]="['/employees']">Employees</a>
+</h2>
 
 <ng-template #callToAction>
-    <p>Contenido del ng-template</p>
-    <div [ngSwitch]="elementNgSwitch">
-        <h3 *ngSwitchCase=true>ngSwitch Case h3 {{elementNgSwitch}}</h3>
-        <h4 *ngSwitchCase=false>ngSwitch Case h4 {{elementNgSwitch}}</h4>
-    </div>
+  <p>Contenido del ng-template</p>
+  <div [ngSwitch]="elementNgSwitch">
+    <h3 *ngSwitchCase="true">ngSwitch Case h3 {{ elementNgSwitch }}</h3>
+    <h4 *ngSwitchCase="false">ngSwitch Case h4 {{ elementNgSwitch }}</h4>
+  </div>
 </ng-template>
 <div role="main">
-    <div>
-        <label for="input">Input/ngSwitch/ng-template </label>
-        <input id="input" type="checkbox" [(ngModel)]="elementInput" placeholder="Input" />
-        @if(elementInput) {
-        <div class="app-component">
-            <label>Text</label>
-            <input type="text" (keyup.enter)="keyupFilter(user)" #user placeholder="Enter a text" />
-            <input type="text" [value]="userName" #username (keyup.enter)="updateUserName(username)"
-                placeholder="Enter a text" />
-            <input type="text" [(ngModel)]="userName" placeholder="Enter a text" />
-
-            <input type="month" [(ngModel)]="dateStart" title="Fecha" (change)="onChange()" />
-            <input type="month" [(ngModel)]="dateEnd" title="fecha" [min]="dateStart" [max]="dateMax" />
+  <div>
+    <label for="input">Input/ngSwitch/ng-template </label>
+    <input
+      id="input"
+      type="checkbox"
+      [(ngModel)]="elementInput"
+      placeholder="Input"
+    />
+    @if(elementInput) {
+      <div class="app-component">
+        <label>Text</label>
+        <input type="text" (keyup.enter)="keyupFilter(user)" #user placeholder="Enter a text" />
+        <input type="text" [value]="userName" #username (keyup.enter)="updateUserName(username)" placeholder="Enter a text" />
+        <input type="text" [(ngModel)]="userName" placeholder="Enter a text" />
+      
+        <input type="month" [(ngModel)]="dateStart" title="Fecha" (change)="onChange()" />
+        <input type="month" [(ngModel)]="dateEnd" title="fecha" [min]="dateStart" [max]="dateMax" />
+      </div>
+      <div class="app-component">
+        <label>elementNgSwitch</label>
+        <input type="checkbox" [(ngModel)]="elementNgSwitch" placeholder="Switch" />
+        <div [ngTemplateOutlet]="callToAction">
+          <h5 [ngStyle]="{
+                  color: elementNgSwitch ? 'green' : 'red',
+                  textTransform: elementNgSwitch ? 'uppercase' : 'lowercase'
+              }">
+            Template 'callToAction' cambio el estilo [ngStyle]
+          </h5>
+          <h5 [ngClass]="{ hideOff: elementNgSwitch, hideOn: !elementNgSwitch }">
+            Template 'callToAction' cambio el estilo [ngClass]
+          </h5>
         </div>
-        <div class="app-component">
-            <label>elementNgSwitch</label>
-            <input type="checkbox" [(ngModel)]="elementNgSwitch" placeholder="Switch" />
-            <div [ngTemplateOutlet]="callToAction">
-                <h5
-                    [ngStyle]="{ 'color': elementNgSwitch? 'green':'red', 'textTransform': elementNgSwitch? 'uppercase':'lowercase' }">
-                    Template 'callToAction' cambio el estilo [ngStyle]
-                </h5>
-                <h5 [ngClass]="{'hideOff': elementNgSwitch, 'hideOn': !elementNgSwitch}">
-                    Template 'callToAction' cambio el estilo [ngClass]
-                </h5>
+      </div>
+    } @else{
+      <p>Area oculta</p>
+    }
+  </div>
+  <div>
+    <label for="for">for to list</label>
+    <input
+      id="for"
+      type="checkbox"
+      [(ngModel)]="elementFor"
+      placeholder="For to list"
+    />
+    @if(elementFor) {
+      <div class="app-component">
+        <div>
+          <ul>
+            @for(item of usersObj; track $index) {
+              <li>
+                #{{ $index }} id:{{ item.id }} name:{{ item.name }}
+                <button (click)="onDelete1(item)">Del</button>
+              </li>
+            }@empty {
+              <li>There are no items.</li>
+            }
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <li *ngFor="let user of usersObj; let ii = index">
+              #{{ ii }} id:{{ user.id }} name:{{ user.name }}
+              <button (click)="onDelete2(ii)">Del</button>
+            </li>
+          </ul>
+          <button (click)="addItem()">Adiciona item</button>
+        </div>
+      </div>
+    } @else{
+      <p>Area oculta</p>
+    }
+  </div>
+  <div>
+    <label for="ngContent">ngContent</label>
+    <input
+      id="ngContent"
+      type="checkbox"
+      [(ngModel)]="elementNgContent"
+      placeholder="Content"
+    />
+    @if(elementNgContent) {
+      <div class="app-component">
+        <h3><ng-content select="[selector1]"></ng-content></h3>
+        <h4><ng-content select="[selector2]"></ng-content></h4>
+      </div>
+    } @else{
+      <p>Area oculta</p>
+    }
+  </div>
+  <div>
+    <label for="ngComponentOutlet">ngComponentOutlet</label>
+    <input
+      id="ngComponentOutlet"
+      type="checkbox"
+      [(ngModel)]="elementComponentOutlet"
+      placeholder="Component outlet"
+    />
+    @if(elementComponentOutlet) {
+      <div class="app-component">
+        <!-- Directiva de salida -->
+        <div *ngComponentOutlet="loadComponent1()"></div>
+      </div>
+    } @else{
+      <p>Area oculta</p>
+    }
+  </div>
+  <div>
+    <label for="reactiveForm">Reactive Form</label>
+    <input
+      id="reactiveForm"
+      type="checkbox"
+      [(ngModel)]="elementReactiveForm"
+      placeholder="Reactive Form"
+    />
+    @if(elementReactiveForm) {
+      <div class="app-component">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+          <input type="text" placeholder="Name" formControlName="fName"
+            [class.ng-invalid]="userForm.get('fName')?.invalid && userForm.get('fName')?.touched" />
+          @if (userForm.get('fName')?.invalid && userForm.get('fName')?.touched) {
+            <div class="alert">
+              @if(userForm.get('fName')?.hasError('required')) {
+                <p>Name is required..</p>
+              } 
+              @if(userForm.get('fName')?.hasError('minlength')) {
+                <p>Name must be atleast 3 charectors long..</p>
+              }
             </div>
-        </div>
-        } @else{
-        <p>Area oculta</p>
-        }
-    </div>
-    <div>
-        <label for="for">for to list</label>
-        <input id="for" type="checkbox" [(ngModel)]="elementFor" placeholder="For to list" />
-        @if(elementFor) {
-        <div class="app-component">
-            <div>
-                <ul>
-                    @for(item of usersObj; track $index) {
-                    <li>#{{$index}} id:{{item.id}} name:{{item.name}} <button (click)="onDelete1(item)">Del</button>
-                    </li>
-                    }@empty {
-                    <li>There are no items.</li>
-                    }
-                </ul>
+          }
+          <br />
+          <input type="email" placeholder="Email" formControlName="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+            [class.ng-invalid]="userForm.get('email')?.invalid && userForm.get('email')?.touched" />
+          @if (userForm.get('email')?.invalid && userForm.get('email')?.touched) {
+            <div class="alert">
+              @if(userForm.get('email')?.hasError('required')) {
+                <p>Email is required..</p>
+              }
+              @if(userForm.get('email')?.hasError('pattern')) {
+                <p>Email is invalid..</p>
+              }
             </div>
-            <div>
-                <ul>
-                    <li *ngFor="let user of usersObj; let ii = index">
-                        #{{ii}} id:{{user.id}} name:{{user.name}} <button (click)="onDelete2(ii)">Del</button>
-                    </li>
-                </ul>
-                <button (click)="addItem()">Adiciona item</button>
-            </div>
-        </div>
-        } @else{
-        <p>Area oculta</p>
-        }
-    </div>
-    <div>
-        <label for="ngContent">ngContent</label>
-        <input id="ngContent" type="checkbox" [(ngModel)]="elementNgContent" placeholder="Content" />
-        @if(elementNgContent) {
-        <div class="app-component">
-            <h3><ng-content select="[selector1]"></ng-content></h3>
-            <h4><ng-content select="[selector2]"></ng-content></h4>
-        </div>
-        } @else{
-        <p>Area oculta</p>
-        }
-    </div>
-    <div>
-        <label for="ngComponentOutlet">ngComponentOutlet</label>
-        <input id="ngComponentOutlet" type="checkbox" [(ngModel)]="elementComponentOutlet"
-            placeholder="Component outlet" />
-        @if(elementComponentOutlet) {
-        <div class="app-component">
-            <!-- Directiva de salida -->
-            <div *ngComponentOutlet="loadComponent1()"></div>
-        </div>
-        } @else{
-        <p>Area oculta</p>
-        }
-    </div>
-    <div>
-        <label for="viewContainer">ViewContainer</label>
-        <input id="viewContainer" type="checkbox" [(ngModel)]="elementViewContainer" placeholder="ViewContainer" />
-        @if(elementViewContainer) {
-        <div class="app-component">
-            <button (click)="loadComponent2()">Create component</button>
-            <button (click)="removeComponent()">Remove component</button>
-        </div>
-        } @else{
-        <p>Area oculta</p>
-        }
-    </div>
-
+            }
+          <br />
+          <textarea placeholder="Address" formControlName="address"></textarea>
+          <br />
+          <button type="submit" [disabled]="userForm.invalid">Submit</button>
+        </form>
+      </div>
+    } @else{
+      <p>Area oculta</p>
+    }
+  </div>   
+  <div>
+    <label for="viewContainer">ViewContainer</label>
+    <input
+      id="viewContainer"
+      type="checkbox"
+      [(ngModel)]="elementViewContainer"
+      placeholder="ViewContainer"
+    />
+    @if(elementViewContainer) {
+      <div class="app-component">
+        <button (click)="loadComponent2()">Create component</button>
+        <button (click)="removeComponent()">Remove component</button>
+      </div>
+    } @else{
+      <p>Area oculta</p>
+    }
+  </div>
 </div>
 <app-profile [inputParameter]="userName"></app-profile>

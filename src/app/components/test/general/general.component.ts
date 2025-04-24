@@ -10,7 +10,7 @@ import {
   Output,
   ViewContainerRef,
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormControl, ReactiveFormsModule, FormGroup, Validator, Validators } from '@angular/forms';
 import {
   NgClass,
   NgFor,
@@ -30,6 +30,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     NgClass,
     NgFor,
     NgStyle,
@@ -60,6 +61,7 @@ export class GeneralComponent
   elementNgContent: boolean = false;
   elementComponentOutlet: boolean = false;
   elementViewContainer: boolean = false;
+  elementReactiveForm: boolean = false;
   dateStart: string = '2024-01';
   dateEnd: string = '2024-12';
   dateMax: string = '2024-12';
@@ -72,6 +74,12 @@ export class GeneralComponent
   ];
   currentPage: number = Math.floor(Math.random() * 100) + 1;
   countDoCheck: number = 0;
+  userForm = new FormGroup({
+    fName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    email: new FormControl('', [Validators.required]),
+    address: new FormControl()
+  });
+
   constructor(private viewContainer: ViewContainerRef) {}
 
   ngOnInit(): void {
@@ -148,5 +156,12 @@ export class GeneralComponent
     else {
       this.dateEnd = `${this.dateStart.substring(0, 4)}${this.dateEnd.substring(4)}`;
     }
+  }
+
+  onSubmit() {
+    console.log(this.userForm);
+    console.log(this.userForm.value.fName);
+    console.log(this.userForm.get('fName'));
+    console.log(this.userForm.get('email'));
   }
 }

@@ -11,8 +11,7 @@ import { GeneralComponent } from './components/test/general/general.component';
     <router-outlet />
     <app-general
       [inputParameter]="message"
-      (messageEvent)="reciveMessage($event)"
-    >
+      (messageEvent)="reciveMessage($event)">
       <p selector1>usando ng-content (selector1)</p>
       <p selector2>usando ng-content (selector2)</p>
     </app-general>
