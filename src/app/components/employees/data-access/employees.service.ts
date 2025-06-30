@@ -55,7 +55,7 @@ export class EmployeeService {
     return this.employeeList.find((ex) => ex.id == id);
   }
 
-  addEmployeeInfo(emloyee: Employee) {
-    this.employeeList.push(emloyee);
+  addEmployeeInfo(employee: Employee) {
+    this.employeeList.push(employee);
   }
 }

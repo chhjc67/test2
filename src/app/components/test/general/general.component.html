@@ -73,7 +73,7 @@
         <div>
           <ul>
             <li *ngFor="let user of usersObj; let ii = index">
-              #{{ ii }} id:{{ user.id }} name:{{ user.name }}
+              #{{ii}} id:{{user.id}} name:{{user.name}} email:{{user.email}}
               <button (click)="onDelete2(ii)">Del</button>
             </li>
           </ul>
@@ -118,52 +118,6 @@
       <p>Area oculta</p>
     }
   </div>
-  <div>
-    <label for="reactiveForm">Reactive Form</label>
-    <input
-      id="reactiveForm"
-      type="checkbox"
-      [(ngModel)]="elementReactiveForm"
-      placeholder="Reactive Form"
-    />
-    @if(elementReactiveForm) {
-      <div class="app-component">
-        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-          <input type="text" placeholder="Name" formControlName="fName"
-            [class.ng-invalid]="userForm.get('fName')?.invalid && userForm.get('fName')?.touched" />
-          @if (userForm.get('fName')?.invalid && userForm.get('fName')?.touched) {
-            <div class="alert">
-              @if(userForm.get('fName')?.hasError('required')) {
-                <p>Name is required..</p>
-              } 
-              @if(userForm.get('fName')?.hasError('minlength')) {
-                <p>Name must be atleast 3 charectors long..</p>
-              }
-            </div>
-          }
-          <br />
-          <input type="email" placeholder="Email" formControlName="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-            [class.ng-invalid]="userForm.get('email')?.invalid && userForm.get('email')?.touched" />
-          @if (userForm.get('email')?.invalid && userForm.get('email')?.touched) {
-            <div class="alert">
-              @if(userForm.get('email')?.hasError('required')) {
-                <p>Email is required..</p>
-              }
-              @if(userForm.get('email')?.hasError('pattern')) {
-                <p>Email is invalid..</p>
-              }
-            </div>
-            }
-          <br />
-          <textarea placeholder="Address" formControlName="address"></textarea>
-          <br />
-          <button type="submit" [disabled]="userForm.invalid">Submit</button>
-        </form>
-      </div>
-    } @else{
-      <p>Area oculta</p>
-    }
-  </div>   
   <div>
     <label for="viewContainer">ViewContainer</label>
     <input

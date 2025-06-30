@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Employee } from '../../../core/model/employee';
 import { EmployeeService } from '../data-access/employees.service';
 import { Router } from '@angular/router';
 import { JsonPipe } from '@angular/common';
@@ -20,10 +19,10 @@ import { JsonPipe } from '@angular/common';
 export class EmployeeDetailComponent implements OnInit {
   @Input('id') employeeId!: number;
   employee: any;
-  public employeeList: Employee[] = [];
+
   constructor(
     private employeeService: EmployeeService,
-    private route: Router
+    private route: Router,
   ) {}
 
   ngOnInit(): void {

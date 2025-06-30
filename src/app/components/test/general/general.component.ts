@@ -10,7 +10,7 @@ import {
   Output,
   ViewContainerRef,
 } from '@angular/core';
-import { FormsModule, FormControl, ReactiveFormsModule, FormGroup, Validator, Validators } from '@angular/forms';
+import { FormsModule,  } from '@angular/forms';
 import {
   NgClass,
   NgFor,
@@ -30,7 +30,6 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [
     FormsModule,
-    ReactiveFormsModule,
     NgClass,
     NgFor,
     NgStyle,
@@ -52,19 +51,18 @@ export class GeneralComponent
     AfterContentChecked,
     AfterViewInit
 {
-  @Input() inputParameter: string = '';
+  @Input() inputParameter = '';
   @Output() messageEvent = new EventEmitter();
-  userName: string = 'Julissa Andrea';
-  elementInput: boolean = false;
-  elementNgSwitch: boolean = false;
-  elementFor: boolean = false;
-  elementNgContent: boolean = false;
-  elementComponentOutlet: boolean = false;
-  elementViewContainer: boolean = false;
-  elementReactiveForm: boolean = false;
-  dateStart: string = '2024-01';
-  dateEnd: string = '2024-12';
-  dateMax: string = '2024-12';
+  userName = 'Julissa Andrea';
+  elementInput = false;
+  elementNgSwitch = false;
+  elementFor = false;
+  elementNgContent = false;
+  elementComponentOutlet = false;
+  elementViewContainer = false;
+  dateStart = '2024-01';
+  dateEnd = '2024-12';
+  dateMax = '2024-12';
   usersObj: Array<any> = [
     { id: 11, name: 'Julissa', email: 'julissa@gmail.com' },
     { id: 12, name: 'Andrea', email: 'andrea@gmail.com' },
@@ -73,12 +71,7 @@ export class GeneralComponent
     { id: 15, name: 'Diana', email: 'diana@gmail.com' },
   ];
   currentPage: number = Math.floor(Math.random() * 100) + 1;
-  countDoCheck: number = 0;
-  userForm = new FormGroup({
-    fName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    email: new FormControl('', [Validators.required]),
-    address: new FormControl()
-  });
+  countDoCheck = 0;
 
   constructor(private viewContainer: ViewContainerRef) {}
 
@@ -107,13 +100,13 @@ export class GeneralComponent
   }
 
   addItem(): void {
-    let user = { id: 16, name: 'Marcela' };
+    const user = { id: 16, name: 'Marcela', email: 'marcela@gmail.com' };
     this.usersObj.push(user);
     this.messageEvent.emit(Math.floor(Math.random() * 100) + 1);
   }
 
   onDelete1(user: object): void {
-    let index = this.usersObj.indexOf(user);
+    const index = this.usersObj.indexOf(user);
     this.usersObj.splice(index, 1);
   }
 
@@ -147,8 +140,8 @@ export class GeneralComponent
 
   onChange(): void {
     this.dateMax = `${this.dateStart.substring(0, 4)}-12`;
-    var monthStart = Number(this.dateStart.substring(5));
-    var monthEnd = Number(this.dateEnd.substring(5));
+    const monthStart = Number(this.dateStart.substring(5));
+    const monthEnd = Number(this.dateEnd.substring(5));
 
     if (monthStart > monthEnd) {
       this.dateEnd = this.dateMax;
@@ -156,12 +149,5 @@ export class GeneralComponent
     else {
       this.dateEnd = `${this.dateStart.substring(0, 4)}${this.dateEnd.substring(4)}`;
     }
-  }
-
-  onSubmit() {
-    console.log(this.userForm);
-    console.log(this.userForm.value.fName);
-    console.log(this.userForm.get('fName'));
-    console.log(this.userForm.get('email'));
   }
 }

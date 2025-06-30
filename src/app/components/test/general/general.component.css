@@ -20,12 +20,3 @@ input {
     color: red;
     text-transform: lowercase;
 }
-.app-component {
-    text-align: left;
-    border: #bbb 2px solid;
-    padding-top: 0.1em;
-    padding-bottom: 0.1em;
-    margin-top: 1em;
-    margin-left: 1em;
-    margin-right: 1em;
-}

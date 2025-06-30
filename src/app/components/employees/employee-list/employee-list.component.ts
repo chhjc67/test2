@@ -10,18 +10,21 @@ import { Router } from '@angular/router';
   template: `
     <h2>List: Employee</h2>
     <div>
+      <button (click)="navigationUrl('employees/create')">
+        Add employee
+      </button>
       <ul>
-        @for(item of employeeList; track $index) {
-        <li>
-          #{{ $index }} code:{{ item.code }} name:{{ item.name }} email:{{
-            item.email
-          }}
-          <button (click)="navigationUrl('employees/detail', item.id)">
-            Detail
-          </button>
-        </li>
-        }@empty {
-        <li>There are no items.</li>
+        @for (item of employeeList; track $index) {
+          <li>
+            #{{ $index }} code:{{ item.code }} name:{{ item.name }} email:{{
+              item.email
+            }}
+            <button (click)="navigationUrl('employees/detail', item.id)">
+              Detail
+            </button>
+          </li>
+        } @empty {
+          <li>There are no items.</li>
         }
       </ul>
     </div>
@@ -33,14 +36,19 @@ export class EmployeeListComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
-    private route: Router
+    private route: Router,
   ) {}
 
   ngOnInit(): void {
     this.employeeList = this.employeeService.getEmployeeList();
   }
 
-  navigationUrl(path: string, id: number) {
-    this.route.navigate([path, id]);
+  navigationUrl(path: string, id?: number) {
+    if (id == null) {
+      this.route.navigate([path]);
+    } else
+    {
+      this.route.navigate([path, id]);
+    }
   }
 }
