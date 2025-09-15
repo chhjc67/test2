@@ -4,10 +4,9 @@ import { routes } from './app.routes';
 import { GeneralComponent } from './components/test/general/general.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, GeneralComponent],
-  template: `
+    selector: 'app-root',
+    imports: [RouterOutlet, GeneralComponent],
+    template: `
     <router-outlet />
     <app-general
       [inputParameter]="message"
@@ -16,7 +15,7 @@ import { GeneralComponent } from './components/test/general/general.component';
       <p selector2>usando ng-content (selector2)</p>
     </app-general>
   `,
-  styles: [],
+    styles: []
 })
 export class AppComponent implements AfterViewInit {
   message: string = 'Texto enviado al componente General...';

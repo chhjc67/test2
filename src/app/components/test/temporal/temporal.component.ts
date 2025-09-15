@@ -1,10 +1,9 @@
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 
 @Component({
-  selector: 'app-temporal',
-  standalone: true,
-  imports: [],
-  template: `
+    selector: 'app-temporal',
+    imports: [],
+    template: `
     <p>temporal works! llamado con *ngComponentOutlet desde GeneralComponent</p>
     <dl>
       <dd>
@@ -34,7 +33,7 @@ import { AfterViewInit, Component, OnDestroy } from '@angular/core';
       <p>Página#&nbsp;<b>{{currentPage}}</b></p>   
     </div> -->
   `,
-  styles: ``,
+    styles: ``
 })
 export class TemporalComponent implements AfterViewInit, OnDestroy {
   constructor() {

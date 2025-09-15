@@ -4,10 +4,9 @@ import { EmployeeService } from '../data-access/employees.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-employee-list',
-  standalone: true,
-  imports: [],
-  template: `
+    selector: 'app-employee-list',
+    imports: [],
+    template: `
     <h2>List: Employee</h2>
     <div>
       <button (click)="navigationUrl('employees/create')">
@@ -29,7 +28,7 @@ import { Router } from '@angular/router';
       </ul>
     </div>
   `,
-  styles: ``,
+    styles: ``
 })
 export class EmployeeListComponent implements OnInit {
   public employeeList: Employee[] = [];

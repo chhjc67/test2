@@ -10,10 +10,9 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'app-profile',
-  standalone: true,
-  imports: [NgSwitch, NgSwitchCase],
-  template: `
+    selector: 'app-profile',
+    imports: [NgSwitch, NgSwitchCase],
+    template: `
     <div [ngSwitch]="onChange">
       <p *ngSwitchCase="true">
         Lanzo el evento ngOnChange (Componente profile)
@@ -23,7 +22,7 @@ import {
       </p>
     </div>
   `,
-  styles: ``,
+    styles: ``
 })
 export class ProfileComponent
   implements OnChanges, OnInit, DoCheck, AfterViewInit

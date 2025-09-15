@@ -5,10 +5,9 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-employee-create',
-  standalone: true,
-  imports: [ ReactiveFormsModule ],
-  template: `
+    selector: 'app-employee-create',
+    imports: [ReactiveFormsModule],
+    template: `
     <h2>Create: Employee</h2>
     <div class="app-component">
       <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
@@ -67,7 +66,7 @@ import { Router } from '@angular/router';
       <button (click)="navigationUrl('employees')">Volver al listado</button>
     </div>
  -->  `,
-  styles: ``,
+    styles: ``
 })
 export class EmployeeCreateComponent {
   employee: Employee = {

@@ -7,10 +7,9 @@ import {
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-temporal1',
-  standalone: true,
-  imports: [FormsModule],
-  template: `
+    selector: 'app-temporal1',
+    imports: [FormsModule],
+    template: `
     <div>
       <p>temporal1 works! {{ dateTime }}</p>
       <form (ngSubmit)="formSubmit(f)" #f="ngForm">
@@ -63,7 +62,7 @@ import { FormsModule } from '@angular/forms';
       </form>
     </div>
   `,
-  styles: `div {margin-left: 10px;}`,
+    styles: `div {margin-left: 10px;}`
 })
 export class Temporal1Component
   implements AfterViewInit, AfterViewChecked, OnDestroy
