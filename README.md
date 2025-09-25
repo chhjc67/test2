@@ -30,4 +30,14 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 Angular 18 Full Course - Complete Zero to Hero Angular 18 full Tutorial.
 [Referencia parte 1 hasta la 12](https://www.youtube.com/watch?v=iNMICDE2e6E&list=PLG6SdLSnBhdWj797VAEvABNYIBEaVQnfF&index=18) y
-[Referencia parte 13 hasta la 19](https://www.youtube.com/watch?v=LJcPyTYBReE&list=PLG6SdLSnBhdWj797VAEvABNYIBEaVQnfF&index=10).
+[Referencia parte 13 hasta la 19](https://www.youtube.com/watch?v=LJcPyTYBReE&list=PLG6SdLSnBhdWj797VAEvABNYIBEaVQnfF&index=10)
+[Pipes parte 20](https://www.youtube.com/watch?v=rvIEW5pW7YQ&list=PLG6SdLSnBhdWj797VAEvABNYIBEaVQnfF&index=10)
+[Pipes parte 21](https://www.youtube.com/watch?v=TI2ATO98ezE&list=PLG6SdLSnBhdWj797VAEvABNYIBEaVQnfF&index=8)
+[Pipes parte 22](https://www.youtube.com/watch?v=q17iHmCa6XU&list=PLG6SdLSnBhdWj797VAEvABNYIBEaVQnfF&index=7)
+[Services parte 23](https://www.youtube.com/watch?v=Ph6eqQU2O3c&list=PLG6SdLSnBhdWj797VAEvABNYIBEaVQnfF&index=7)
+[Services parte 24](https://www.youtube.com/watch?v=9Nkzl0H8hmI&list=PLG6SdLSnBhdWj797VAEvABNYIBEaVQnfF&index=5)
+[Services parte 25](https://www.youtube.com/watch?v=0KUm629PNd4)
+[Template drive form parte 26](https://www.youtube.com/watch?v=m9UxsZ4F_gs&list=PLG6SdLSnBhdWj797VAEvABNYIBEaVQnfF&index=4)
+[Template drive form parte 27](https://www.youtube.com/watch?v=cYlHeEK9GAg&list=PLG6SdLSnBhdWj797VAEvABNYIBEaVQnfF&index=3)
+[Template drive form parte 28](https://www.youtube.com/watch?v=9r38ePlIzXs&list=PLG6SdLSnBhdWj797VAEvABNYIBEaVQnfF&index=2)
+[Reactive Forms -Angular 19 parte 29](https://www.youtube.com/watch?v=Y7kJCkIjsy0&list=PLG6SdLSnBhdWj797VAEvABNYIBEaVQnfF&index=1)
